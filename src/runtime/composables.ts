@@ -1,3 +1,5 @@
 import { useNuxtApp } from '#imports'
+import type { MixpanelClient } from './types'
 
-export const useMixpanel = () => useNuxtApp().$mixpanel
+/** Access the browser SDK, or its inactive implementation during SSR. */
+export const useMixpanel = (): MixpanelClient => useNuxtApp().$mixpanel

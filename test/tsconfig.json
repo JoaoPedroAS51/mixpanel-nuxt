@@ -1,0 +1,7 @@
+{
+  "files": [],
+  "references": [
+    { "path": "../playground/.nuxt/tsconfig.app.json" },
+    { "path": "../playground/.nuxt/tsconfig.node.json" }
+  ]
+}

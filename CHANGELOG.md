@@ -3,15 +3,15 @@
 
 ## v0.0.17
 
-[compare changes](https://github.com/JoaoPedroAS51/nuxt-mixpanel/compare/v0.0.16...v0.0.17)
+[compare changes](https://github.com/JoaoPedroAS51/mixpanel-nuxt/compare/v0.0.16...v0.0.17)
 
 ## v0.0.16
 
-[compare changes](https://github.com/JoaoPedroAS51/nuxt-mixpanel/compare/v0.0.15...v0.0.16)
+[compare changes](https://github.com/JoaoPedroAS51/mixpanel-nuxt/compare/v0.0.15...v0.0.16)
 
 ### 🩹 Fixes
 
-- **plugin:** Set plugin name to `mixpanel` ([abea822](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/abea822))
+- **plugin:** Set plugin name to `mixpanel` ([abea822](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/abea822))
 
 ### ❤️ Contributors
 
@@ -19,21 +19,21 @@
 
 ## v0.0.15
 
-[compare changes](https://github.com/JoaoPedroAS51/nuxt-mixpanel/compare/v0.0.14...v0.0.15)
+[compare changes](https://github.com/JoaoPedroAS51/mixpanel-nuxt/compare/v0.0.14...v0.0.15)
 
 ## v0.0.14
 
-[compare changes](https://github.com/JoaoPedroAS51/nuxt-mixpanel/compare/v0.0.13...v0.0.14)
+[compare changes](https://github.com/JoaoPedroAS51/mixpanel-nuxt/compare/v0.0.13...v0.0.14)
 
 ### 🩹 Fixes
 
-- Lint ([80cf0e8](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/80cf0e8))
+- Lint ([80cf0e8](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/80cf0e8))
 
 ### 🏡 Chore
 
-- Update mixpanel-browser to 2.65.0 ([#2](https://github.com/JoaoPedroAS51/nuxt-mixpanel/pull/2))
-- Update to nuxt 4 ([044db14](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/044db14))
-- Nuxt 4 compatibility ([cac3af6](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/cac3af6))
+- Update mixpanel-browser to 2.65.0 ([#2](https://github.com/JoaoPedroAS51/mixpanel-nuxt/pull/2))
+- Update to nuxt 4 ([044db14](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/044db14))
+- Nuxt 4 compatibility ([cac3af6](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/cac3af6))
 
 ### ❤️ Contributors
 
@@ -42,11 +42,11 @@
 
 ## v0.0.13
 
-[compare changes](https://github.com/JoaoPedroAS51/nuxt-mixpanel/compare/v0.0.12...v0.0.13)
+[compare changes](https://github.com/JoaoPedroAS51/mixpanel-nuxt/compare/v0.0.12...v0.0.13)
 
 ### 🩹 Fixes
 
-- Remove custom track pageview behavior ([de2f659](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/de2f659))
+- Remove custom track pageview behavior ([de2f659](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/de2f659))
 
 ### ❤️ Contributors
 
@@ -54,11 +54,11 @@
 
 ## v0.0.12
 
-[compare changes](https://github.com/JoaoPedroAS51/nuxt-mixpanel/compare/v0.0.11...v0.0.12)
+[compare changes](https://github.com/JoaoPedroAS51/mixpanel-nuxt/compare/v0.0.11...v0.0.12)
 
 ### 🩹 Fixes
 
-- OptimizeDeps ([2a5a523](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/2a5a523))
+- OptimizeDeps ([2a5a523](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/2a5a523))
 
 ### ❤️ Contributors
 
@@ -66,11 +66,11 @@
 
 ## v0.0.11
 
-[compare changes](https://github.com/JoaoPedroAS51/nuxt-mixpanel/compare/v0.0.10...v0.0.11)
+[compare changes](https://github.com/JoaoPedroAS51/mixpanel-nuxt/compare/v0.0.10...v0.0.11)
 
 ### 🩹 Fixes
 
-- Don’t add to optimizeDeps ([c10ec65](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/c10ec65))
+- Don’t add to optimizeDeps ([c10ec65](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/c10ec65))
 
 ### ❤️ Contributors
 
@@ -78,11 +78,11 @@
 
 ## v0.0.10
 
-[compare changes](https://github.com/JoaoPedroAS51/nuxt-mixpanel/compare/v0.0.9...v0.0.10)
+[compare changes](https://github.com/JoaoPedroAS51/mixpanel-nuxt/compare/v0.0.9...v0.0.10)
 
 ### 🩹 Fixes
 
-- Mixpanel type ([942e0c8](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/942e0c8))
+- Mixpanel type ([942e0c8](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/942e0c8))
 
 ### ❤️ Contributors
 
@@ -90,11 +90,11 @@
 
 ## v0.0.9
 
-[compare changes](https://github.com/JoaoPedroAS51/nuxt-mixpanel/compare/v0.0.8...v0.0.9)
+[compare changes](https://github.com/JoaoPedroAS51/mixpanel-nuxt/compare/v0.0.8...v0.0.9)
 
 ### 🏡 Chore
 
-- Save @types/mixpanel-browser as dependency ([5b3c35b](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/5b3c35b))
+- Save @types/mixpanel-browser as dependency ([5b3c35b](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/5b3c35b))
 
 ### ❤️ Contributors
 
@@ -102,16 +102,16 @@
 
 ## v0.0.8
 
-[compare changes](https://github.com/JoaoPedroAS51/nuxt-mixpanel/compare/v0.0.7...v0.0.8)
+[compare changes](https://github.com/JoaoPedroAS51/mixpanel-nuxt/compare/v0.0.7...v0.0.8)
 
 ### 🩹 Fixes
 
-- Use `import.meta` for client and server ([e3fa5d3](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/e3fa5d3))
+- Use `import.meta` for client and server ([e3fa5d3](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/e3fa5d3))
 
 ### 🏡 Chore
 
-- Update deps and dev deps ([012bedb](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/012bedb))
-- Update scripts ([1cc2d4f](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/1cc2d4f))
+- Update deps and dev deps ([012bedb](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/012bedb))
+- Update scripts ([1cc2d4f](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/1cc2d4f))
 
 ### ❤️ Contributors
 
@@ -119,17 +119,17 @@
 
 ## v0.0.7
 
-[compare changes](https://github.com/JoaoPedroAS51/nuxt-mixpanel/compare/v0.0.6...v0.0.7)
+[compare changes](https://github.com/JoaoPedroAS51/mixpanel-nuxt/compare/v0.0.6...v0.0.7)
 
 ### 🩹 Fixes
 
-- Import from #imports ([79bfed3](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/79bfed3))
-- Auto track pageview using route middleware ([91bf3f9](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/91bf3f9))
-- RuntimeConfig type ([b6014d6](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/b6014d6))
+- Import from #imports ([79bfed3](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/79bfed3))
+- Auto track pageview using route middleware ([91bf3f9](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/91bf3f9))
+- RuntimeConfig type ([b6014d6](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/b6014d6))
 
 ### 🏡 Chore
 
-- Update commit email ([4cb0927](https://github.com/JoaoPedroAS51/nuxt-mixpanel/commit/4cb0927))
+- Update commit email ([4cb0927](https://github.com/JoaoPedroAS51/mixpanel-nuxt/commit/4cb0927))
 
 ### ❤️ Contributors
 
@@ -214,4 +214,3 @@
 ### ❤️  Contributors
 
 - João Pedro Antunes Silva <hi@joaopedroas.com>
-

@@ -1,7 +1,6 @@
-import MyModule from '../../../src/module'
-
 export default defineNuxtConfig({
-  modules: [
-    MyModule,
-  ],
+  modules: ['mixpanel-nuxt'],
+  devtools: { enabled: false },
+  compatibilityDate: '2026-10-03',
+  telemetry: false,
 })

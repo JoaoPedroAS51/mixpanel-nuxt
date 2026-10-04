@@ -1,113 +1,83 @@
-<!--
-Get your module up and running quickly.
-
-Find and replace all on all files (CMD+SHIFT+F):
-- Name: mixpanel-nuxt
-- Package name: mixpanel-nuxt
-- Description: My new Nuxt module
--->
-
 # mixpanel-nuxt
+
+> [Mixpanel](https://mixpanel.com/) integration for [Nuxt](https://nuxt.com).
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-<!-- My new Nuxt module for doing amazing things. -->
+Track browser and server events with the official Mixpanel SDKs.
 
-- [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/mixpanel-nuxt?file=playground%2Fapp.vue) -->
-<!-- - [📖 &nbsp;Documentation](https://example.com) -->
+## Highlights
 
-<!-- ## Features -->
+- 🖱️ **Browser events.** Access the browser SDK through `useMixpanel()`.
+- 🖥️ **Nitro events.** Use the Node SDK in server routes, plugins and utilities.
+- 🔄 **SSR support.** Browser tracking stays inactive during SSR and initializes in the browser.
+- 🧭 **Vue Router integration.** Record pageviews automatically as users navigate.
+- 📄 **Page meta.** Set custom properties or disable tracking for individual pages.
+- 🪝 **Runtime hooks.** Enrich pageviews with async data or skip them before they are sent.
 
-<!-- Highlight some of the features your module provide here -->
-<!-- - ⛰ &nbsp;Foo
-- 🚠 &nbsp;Bar
-- 🌲 &nbsp;Baz -->
+## Documentation
 
-## Quick Setup
+The [full documentation](https://mixpanel-nuxt.vercel.app) includes setup, integrations and API references.
 
-1. Add `mixpanel-nuxt` dependency to your project
+- [Configuration](https://mixpanel-nuxt.vercel.app/get-started/configuration)
+- [Pageviews](https://mixpanel-nuxt.vercel.app/integration/pageviews)
+- [Nitro](https://mixpanel-nuxt.vercel.app/integration/nitro)
+
+## Install
 
 ```bash
-# Using pnpm
 pnpm add -D mixpanel-nuxt
-
-# Using yarn
-yarn add --dev mixpanel-nuxt
-
-# Using npm
-npm install --save-dev mixpanel-nuxt
 ```
 
-2. Add `mixpanel-nuxt` to the `modules` section of `nuxt.config.ts`
-
-```js
-export default defineNuxtConfig({
-  modules: [
-    'mixpanel-nuxt'
-  ],
-})
-```
-
-## Basic usage
-
-You can use the provided composable to access Mixpanel anywhere.
-
-```js
-const mixpanel = useMixpanel()
-mixpanel.track('My event')
-```
-
-## Configuration
-
-You just need to set your Mixpanel token in the module options and you're good to go!
-By default `process.env.MIXPANEL_TOKEN` is used. 
-
-You can also disable the module by setting `disabled: true`.
-
-```js
-export default defineNuxtConfig({
-  modules: [
-    'mixpanel-nuxt'
-  ],
-  mixpanel: {
-    token: 'your-token',
-    disabled: false,
-    config: {
-      // Mixpanel config
-    }
-  }
-})
-```
-
-## Development
+<details><summary>npm / yarn / bun</summary>
 
 ```bash
-# Install dependencies
-npm install
-
-# Generate type stubs
-npm run dev:prepare
-
-# Develop with the playground
-npm run dev
-
-# Build the playground
-npm run dev:build
-
-# Run ESLint
-npm run lint
-
-# Run Vitest
-npm run test
-npm run test:watch
-
-# Release new version
-npm run release
+npm install --save-dev mixpanel-nuxt
+yarn add --dev mixpanel-nuxt
+bun add --dev mixpanel-nuxt
 ```
+
+</details>
+
+Requires Nuxt 4.6 or later.
+
+## Usage
+
+Register the module and set your project token:
+
+```ts
+export default defineNuxtConfig({
+  modules: ['mixpanel-nuxt'],
+  mixpanel: {
+    client: {
+      token: 'your-project-token',
+    },
+  },
+})
+```
+
+Track an event with `useMixpanel()`:
+
+```vue
+<script setup lang="ts">
+const mixpanel = useMixpanel()
+
+function downloadReport() {
+  mixpanel.track('Report downloaded', { format: 'csv' })
+}
+</script>
+
+<template>
+  <button @click="downloadReport">Download report</button>
+</template>
+```
+
+## License
+
+[MIT](./LICENSE)
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/mixpanel-nuxt/latest.svg?style=flat&colorA=18181B&colorB=28CF8D

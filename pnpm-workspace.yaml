@@ -1,0 +1,22 @@
+packages:
+  - docs
+
+overrides:
+  mdast-util-to-markdown: 2.1.2
+
+allowBuilds:
+  '@parcel/watcher': true
+  better-sqlite3: false
+  vue-demi: true
+  esbuild: true
+  unrs-resolver: true
+minimumReleaseAgeExclude:
+  - '@nuxt/kit@4.6.0'
+  - '@nuxt/cli@4.0.0'
+  - '@nuxt/nitro-server@4.6.0'
+  - '@nuxt/schema@4.6.0'
+  - '@nuxt/vite-builder@4.6.0'
+  - '@nuxt/vite-server@4.6.0'
+  - nuxt@4.6.0
+  - docus@5.14.0
+  - release-it@21.1.1

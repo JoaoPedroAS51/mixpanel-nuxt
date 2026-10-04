@@ -1,14 +1,32 @@
 {
   "name": "mixpanel-nuxt",
+  "type": "module",
   "version": "0.0.17",
   "description": "Mixpanel module for Nuxt",
-  "repository": "JoaoPedroAS51/nuxt-mixpanel",
+  "author": "João Pedro Antunes Silva <hi@joaopedroas.com>",
   "license": "MIT",
-  "type": "module",
+  "homepage": "https://github.com/JoaoPedroAS51/mixpanel-nuxt#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoaoPedroAS51/mixpanel-nuxt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JoaoPedroAS51/mixpanel-nuxt/issues"
+  },
+  "keywords": [
+    "mixpanel",
+    "nuxt",
+    "nuxt-module"
+  ],
+  "packageManager": "pnpm@12.10.1",
   "exports": {
     ".": {
       "types": "./dist/types.d.mts",
       "import": "./dist/module.mjs"
+    },
+    "./config": {
+      "types": "./dist/config.d.mts",
+      "import": "./dist/config.mjs"
     }
   },
   "main": "./dist/module.mjs",
@@ -16,6 +34,9 @@
     "*": {
       ".": [
         "./dist/types.d.mts"
+      ],
+      "config": [
+        "./dist/config.d.mts"
       ]
     }
   },
@@ -23,34 +44,69 @@
     "dist"
   ],
   "scripts": {
-    "prepare": "nuxt-module-build prepare",
-    "dev": "nuxi dev playground",
-    "dev:build": "nuxi build playground",
-    "dev:generate": "nuxi generate playground",
-    "dev:preview": "nuxi preview playground",
-    "dev:prepare": "pnpm prepare && pnpm build:stub",
+    "dev": "nuxt dev playground",
+    "dev:build": "nuxt build playground",
+    "dev:generate": "nuxt generate playground",
+    "dev:preview": "nuxt preview playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxt prepare playground && pnpm prepare:fixtures",
     "build": "nuxt-module-build build",
-    "build:stub": "pnpm build --stub",
+    "prepare:fixtures": "nuxt prepare test/fixtures/basic && nuxt prepare test/fixtures/config-files && nuxt prepare test/fixtures/url-filters && nuxt prepare test/fixtures/no-pages && nuxt prepare test/fixtures/nuxt5-compat",
     "prepack": "pnpm build",
-    "release": "pnpm lint && pnpm test && pnpm prepack && pnpm changelogen --release --push && pnpm publish && git push --follow-tags",
+    "release": "pnpm lint && pnpm typecheck && pnpm test && pnpm prepack && release-it",
     "lint": "eslint .",
     "lint:fix": "pnpm lint --fix",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest --project unit",
+    "typecheck": "nuxt typecheck playground && pnpm typecheck:fixtures",
+    "typecheck:fixtures": "nuxt typecheck test/fixtures/basic && nuxt typecheck test/fixtures/config-files && nuxt typecheck test/fixtures/url-filters && nuxt typecheck test/fixtures/no-pages && nuxt typecheck test/fixtures/nuxt5-compat",
+    "test:unit": "vitest run --project unit",
+    "test:types": "vitest run --project types",
+    "test:e2e": "vitest run --project e2e",
+    "docs:dev": "pnpm --dir docs dev",
+    "docs:build": "pnpm --dir docs build",
+    "docs:generate": "pnpm --dir docs generate",
+    "docs:preview": "pnpm --dir docs preview",
+    "docs:typecheck": "pnpm --dir docs typecheck"
   },
   "dependencies": {
-    "@nuxt/kit": "^4.4.2",
-    "mixpanel-browser": "^2.78.0"
+    "@nuxt/kit": "^4.6.0",
+    "consola": "^3.4.2",
+    "defu": "^6.1.7",
+    "mixpanel": "^0.24.0",
+    "mixpanel-browser": "^2.84.0"
   },
   "devDependencies": {
-    "@nuxt/eslint-config": "^1.15.2",
-    "@nuxt/module-builder": "^1.0.2",
-    "@nuxt/schema": "^4.4.2",
-    "@nuxt/test-utils": "^4.0.2",
-    "@types/node": "^24.12.2",
-    "changelogen": "^0.6.2",
-    "eslint": "^9.39.4",
-    "nuxt": "^4.4.2",
-    "vitest": "^4.1.5"
+    "@nuxt/eslint-config": "^1.17.0",
+    "@nuxt/module-builder": "^1.0.3",
+    "@nuxt/schema": "^4.6.0",
+    "@nuxt/test-utils": "^4.3.3",
+    "@release-it/conventional-changelog": "^12.0.2",
+    "@types/node": "^26.6.4",
+    "eslint": "^10.12.0",
+    "nuxt": "4.6.0",
+    "playwright": "^1.63.0",
+    "release-it": "^21.1.1",
+    "typescript": "~6.0.3",
+    "vitest": "^5.0.3",
+    "vue-tsc": "^3.3.12"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore(release): release v${version}"
+    },
+    "github": {
+      "release": true,
+      "releaseName": "v${version}"
+    },
+    "npm": {
+      "publish": false
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "conventionalcommits",
+        "infile": "CHANGELOG.md",
+        "ignoreRecommendedBump": true
+      }
+    }
   }
 }
