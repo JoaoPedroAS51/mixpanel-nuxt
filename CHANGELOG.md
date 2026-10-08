@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.0](https://github.com/JoaoPedroAS51/mixpanel-nuxt/compare/v0.0.17...v1.0.0) (2026-10-08)
+
+The module has been rewritten around the official Mixpanel browser and Node SDKs. Version 1.0.0 requires **Nuxt 4.6.0 or later**.
+
+- **Browser tracking:** access the browser SDK through `useMixpanel()`. Tracking stays inactive during SSR and initializes in the browser.
+- **Nitro support:** track server events with `useMixpanelServer()` in server routes, plugins and utilities.
+- **Router pageviews:** automatic pageviews wait for the destination page, title and transitions to render. Cancelled navigations send no pageview, and redirects record the final destination.
+- **Page metadata and hooks:** add properties or exclude pages through `definePageMeta()`. Use the async `mixpanel:pageview` hook to enrich or skip events before they are sent.
+- **Separate client and server configuration:** configure each SDK independently, with optional `mixpanel.client.config.ts` and `mixpanel.server.config.ts` files for callbacks and other runtime options.
+
+This is a breaking release. Review your existing configuration before upgrading.
+
+See the [documentation](https://mixpanel-nuxt.vercel.app) for setup, configuration and API references.
 
 ## v0.0.17
 
