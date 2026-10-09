@@ -1,10 +1,25 @@
 import { join } from 'node:path'
 import { loadNuxt } from '@nuxt/kit'
-import { describe, expect, test } from 'vitest'
+import { assert, describe, expect, test } from 'vitest'
 import { fixturePath } from '../support/options'
 
 const rootDir = fixturePath('basic')
 const configFilesDir = fixturePath('config-files')
+
+async function configurationTemplate(nuxt: Awaited<ReturnType<typeof loadNuxt>>, section: 'client' | 'server') {
+  if (section === 'client') {
+    const template = nuxt.options.build.templates.find(template => template.filename === 'mixpanel/client-config.mjs')
+    assert(template?.getContents)
+    expect(nuxt.options.alias['#mixpanel/client-config']).toBe(template.dst)
+
+    return template.getContents({} as never)
+  }
+
+  const template = nuxt.options.nitro.virtual?.['#mixpanel/server-config']
+  assert(typeof template === 'function')
+
+  return template()
+}
 
 const cases = [
   ...['client', 'server'].flatMap(section => [
@@ -189,6 +204,7 @@ describe('configuration file discovery', () => {
 
       expect(options.config).toBeUndefined()
       expect(references).toContainEqual({ path })
+      expect(await configurationTemplate(nuxt, section)).toContain(`import config from ${JSON.stringify(path)}`)
     }
     finally {
       await nuxt?.close()
@@ -227,6 +243,9 @@ describe('configuration file discovery', () => {
 
       expect(references).toContainEqual({ path: join(rootDir, 'configurations/valid.ts') })
       expect(references).not.toContainEqual({ path })
+      const contents = await configurationTemplate(nuxt, section)
+      expect(contents).toContain(`import config from ${JSON.stringify(join(rootDir, 'configurations/valid.ts'))}`)
+      expect(contents).not.toContain(JSON.stringify(path))
     }
     finally {
       await nuxt?.close()

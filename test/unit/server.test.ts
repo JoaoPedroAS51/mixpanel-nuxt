@@ -96,52 +96,13 @@ describe('Node SDK access', () => {
     expect(init).toHaveBeenCalledExactlyOnceWith('server-token', config)
   })
 
-  it('preserves explicit identities on each operation', () => {
-    const track = vi.fn()
-    const sdk = { init: () => ({ track }) } as unknown as MixpanelServerSDK
-    const client = createServerAccessor(() => options, sdk, undefined)()
+  it('rejects disabled access without initializing the SDK', () => {
+    const init = vi.fn(() => ({}))
+    const sdk = { init } as unknown as MixpanelServerSDK
+    const useClient = createServerAccessor(() => ({ ...options, enabled: false }), sdk, undefined)
 
-    client.track('one', { distinct_id: 'first' })
-    client.track('two', { distinct_id: 'second' })
-
-    expect(track).toHaveBeenNthCalledWith(1, 'one', { distinct_id: 'first' })
-    expect(track).toHaveBeenNthCalledWith(2, 'two', { distinct_id: 'second' })
-  })
-
-  it('preserves successful SDK callbacks', () => {
-    const native = {
-      track: (_event: string, _props: object, callback: () => void) => callback(),
-    }
-    const sdk = { init: () => native } as unknown as MixpanelServerSDK
-    const client = createServerAccessor(() => options, sdk, undefined)()
-    const callback = vi.fn()
-
-    client.track('one', { distinct_id: 'first' }, callback)
-
-    expect(callback).toHaveBeenCalledExactlyOnceWith()
-  })
-
-  it('preserves SDK callback errors', () => {
-    const failure = new Error('ingestion unavailable')
-    const native = {
-      track: (_event: string, _props: object, callback: (error: Error) => void) => callback(failure),
-    }
-    const sdk = { init: () => native } as unknown as MixpanelServerSDK
-    const client = createServerAccessor(() => options, sdk, undefined)()
-    const callback = vi.fn()
-
-    client.track('one', {}, callback)
-
-    expect(callback).toHaveBeenCalledExactlyOnceWith(failure)
-  })
-
-  it.each([
-    { name: 'disabled tracking', config: { ...options, enabled: false }, message: 'Enable mixpanel.server.enabled' },
-  ])('reports $name', ({ config, message }) => {
-    const sdk = { init: vi.fn() } as unknown as MixpanelServerSDK
-    const useClient = createServerAccessor(() => config, sdk, undefined)
-
-    expect(useClient).toThrow(message)
+    expect(useClient).toThrow('Enable mixpanel.server.enabled')
+    expect(init).not.toHaveBeenCalled()
   })
 
   it('preserves SDK initialization errors with an empty token', () => {

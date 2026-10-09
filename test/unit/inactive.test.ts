@@ -39,10 +39,10 @@ describe('inactive browser client', () => {
     const callback = vi.fn()
 
     const result = group
-      .set({ name: 'One' })
-      .set_once({ plan: 'test' })
-      .union('tags', ['test'])
-      .remove('tags', 'test')
+      .set({ name: 'One' }, undefined, callback)
+      .set_once({ plan: 'test' }, undefined, callback)
+      .union('tags', ['test'], callback)
+      .remove('tags', 'test', callback)
 
     group.unset('name', callback)
 
@@ -68,10 +68,21 @@ describe('inactive browser client', () => {
     expect(sdk.has_opted_out_tracking()).toBeUndefined()
   })
 
-  it('keeps init chainable', () => {
+  it('keeps init chainable without retaining configuration', () => {
     const sdk = createInactiveClient()
 
-    expect(sdk.init('ignored', {})).toBe(sdk)
+    expect(sdk.init('ignored', { debug: true })).toBe(sdk)
+    expect(sdk.get_config('token')).toBeUndefined()
+    expect(sdk.get_config('debug')).toBeUndefined()
+  })
+
+  it('does not retain configuration set with set_config', () => {
+    const sdk = createInactiveClient()
+
+    sdk.set_config({ api_host: 'https://ignored.test', debug: true })
+
+    expect(sdk.get_config('api_host')).toBeUndefined()
+    expect(sdk.get_config('debug')).toBeUndefined()
   })
 
   it('returns absent synchronous flag state', () => {
@@ -101,12 +112,13 @@ describe('inactive browser client', () => {
     await expect(flags.is_enabled('feature', true)).resolves.toBeUndefined()
   })
 
-  it('does not share inactive instances between SSR apps', () => {
+  it('creates independent inactive instances', () => {
     const firstApp = createInactiveClient()
     const secondApp = createInactiveClient()
 
     expect(firstApp).not.toBe(secondApp)
     expect(firstApp.people).not.toBe(secondApp.people)
+    expect(firstApp.flags).not.toBe(secondApp.flags)
     expect(firstApp.get_group('org', 'one')).not.toBe(secondApp.get_group('org', 'one'))
   })
 })

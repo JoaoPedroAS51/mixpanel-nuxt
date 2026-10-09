@@ -11,21 +11,6 @@ const state = vi.hoisted(() => ({
 
 vi.mock('#imports', () => ({ defineNuxtPlugin: (plugin: unknown) => plugin }))
 
-vi.mock('#mixpanel/client-config', () => {
-  state.fileLoads++
-
-  return {
-    get default() {
-      return state.file
-    },
-  }
-})
-vi.mock('mixpanel-browser', () => {
-  state.sdkLoads++
-
-  return { default: { init: state.init } }
-})
-
 vi.mock('../../src/runtime/pageview/router', () => ({ trackRouterPageviews: state.trackRouterPageviews }))
 
 beforeEach(() => {
@@ -35,6 +20,17 @@ beforeEach(() => {
   state.file = undefined
   state.init.mockReset()
   state.trackRouterPageviews.mockReset()
+
+  vi.doMock('#mixpanel/client-config', () => {
+    state.fileLoads++
+
+    return { default: state.file }
+  })
+  vi.doMock('mixpanel-browser', () => {
+    state.sdkLoads++
+
+    return { default: { init: state.init } }
+  })
 })
 
 async function setupClient(options: ClientRuntimeOptions) {
@@ -75,6 +71,19 @@ describe('Nuxt app plugins', () => {
     expect(state.sdkLoads).toBe(0)
   })
 
+  it('does not share inactive clients between SSR apps', async () => {
+    const { default: plugin } = await import('../../src/runtime/plugin.server')
+    const first = await plugin.setup!({} as never)
+    const second = await plugin.setup!({} as never)
+    const firstClient = first!.provide!.mixpanel
+    const secondClient = second!.provide!.mixpanel
+
+    expect(firstClient).not.toBe(secondClient)
+    expect(firstClient.people).not.toBe(secondClient.people)
+    expect(firstClient.flags).not.toBe(secondClient.flags)
+    expect(firstClient.get_group('org', 'one')).not.toBe(secondClient.get_group('org', 'one'))
+  })
+
   it('initializes the browser SDK with an empty token', async () => {
     const native = { track: vi.fn() }
     state.init.mockReturnValue(native)
@@ -83,6 +92,8 @@ describe('Nuxt app plugins', () => {
 
     expect(state.init).toHaveBeenCalledExactlyOnceWith('', {}, 'mixpanel-nuxt')
     expect(provided!.provide!.mixpanel).toBe(native)
+    expect(state.sdkLoads).toBe(1)
+    expect(state.fileLoads).toBe(1)
   })
 
   it('passes runtime token and config unchanged to the native SDK with the native pageview strategy', async () => {
@@ -101,12 +112,14 @@ describe('Nuxt app plugins', () => {
   it('moves enabled pageviews from the SDK to the router', async () => {
     const native = { track: vi.fn() }
     state.init.mockReturnValue(native)
-    const config = { track_pageview: 'url-with-path' as const, debug: true }
+    const config = Object.freeze({ track_pageview: 'url-with-path' as const, debug: true })
 
     await setupClient({ enabled: true, token: 'deploy-token', pageviewStrategy: 'router', config })
 
     expect(state.init).toHaveBeenCalledExactlyOnceWith('deploy-token', { track_pageview: false, debug: true }, 'mixpanel-nuxt')
     expect(state.trackRouterPageviews).toHaveBeenCalledExactlyOnceWith(native, config, 'url-with-path')
+    expect(state.init.mock.calls[0]![1]).not.toBe(config)
+    expect(config.track_pageview).toBe('url-with-path')
   })
 
   it('leaves the SDK configuration unchanged when pageviews are disabled', async () => {

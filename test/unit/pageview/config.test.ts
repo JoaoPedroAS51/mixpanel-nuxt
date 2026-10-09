@@ -18,6 +18,7 @@ describe('pageview mode', () => {
 
   it('ignores track_pageview when autocapture is enabled', () => {
     expect(resolvePageviewMode({ autocapture: { pageview: false }, track_pageview: 'full-url' })).toBe(false)
+    expect(resolvePageviewMode({ autocapture: { pageview: 'full-url' }, track_pageview: 'url-with-path' })).toBe('full-url')
   })
 })
 
@@ -40,7 +41,12 @@ describe('autocapture URL filters', () => {
 
 describe('SDK pageview sources', () => {
   it('disables track_pageview without enabling autocapture', () => {
-    expect(withoutSDKPageviews({ track_pageview: 'full-url', debug: true })).toEqual({ track_pageview: false, debug: true })
+    const config = Object.freeze({ track_pageview: 'full-url' as const, debug: true })
+    const result = withoutSDKPageviews(config)
+
+    expect(result).toEqual({ track_pageview: false, debug: true })
+    expect(result).not.toBe(config)
+    expect(config.track_pageview).toBe('full-url')
   })
 
   it('turns autocapture: true into an object without pageviews', () => {
@@ -48,12 +54,17 @@ describe('SDK pageview sources', () => {
   })
 
   it('keeps the other autocapture options', () => {
-    const config = { autocapture: { click: false, scroll: true, pageview: 'url-with-path' as const } }
+    const autocapture = Object.freeze({ click: false, scroll: true, pageview: 'url-with-path' as const })
+    const config = Object.freeze({ track_pageview: true, autocapture })
+    const result = withoutSDKPageviews(config)
 
-    expect(withoutSDKPageviews(config)).toEqual({
+    expect(result).toEqual({
       track_pageview: false,
       autocapture: { click: false, scroll: true, pageview: false },
     })
+    expect(result).not.toBe(config)
+    expect(result.autocapture).not.toBe(autocapture)
+    expect(config.track_pageview).toBe(true)
     expect(config.autocapture.pageview).toBe('url-with-path')
   })
 
