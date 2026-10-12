@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "docus": "^5.14.0",
-    "nuxt": "4.6.0"
+    "nuxt": "4.6.1"
   },
   "devDependencies": {
     "typescript": "~6.0.3",
