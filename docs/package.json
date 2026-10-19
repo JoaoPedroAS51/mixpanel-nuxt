@@ -12,11 +12,11 @@
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
-    "docus": "^5.14.0",
+    "docus": "^5.15.0",
     "nuxt": "4.6.2"
   },
   "devDependencies": {
     "typescript": "~6.0.3",
-    "vue-tsc": "^3.3.12"
+    "vue-tsc": "^3.3.13"
   }
 }
