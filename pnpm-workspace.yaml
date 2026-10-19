@@ -2,7 +2,7 @@ packages:
   - docs
 
 overrides:
-  mdast-util-to-markdown: 2.1.2
+  mdast-util-to-markdown: 2.2.0
 
 allowBuilds:
   '@parcel/watcher': true
