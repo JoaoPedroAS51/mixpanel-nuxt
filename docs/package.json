@@ -12,6 +12,7 @@
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
+    "@nuxt/content": "3.16.1",
     "docus": "^5.15.0",
     "nuxt": "4.6.2"
   },
