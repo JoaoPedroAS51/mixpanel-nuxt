@@ -5,6 +5,10 @@
   ],
   "packageRules": [
     {
+      "matchPackageNames": ["mixpanel", "mixpanel-browser", "docus"],
+      "groupName": null
+    },
+    {
       "description": "Keep MDC serialization compatible until https://github.com/syntax-tree/mdast-util-to-markdown/pull/88 is released and validated",
       "matchPackageNames": ["mdast-util-to-markdown"],
       "allowedVersions": "2.1.2"
