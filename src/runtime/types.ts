@@ -132,9 +132,9 @@ export interface ModuleOptions {
 }
 
 export interface ModulePublicRuntimeConfig {
-  mixpanel: { client: ClientRuntimeOptions }
+  mixpanel: { client: Pick<ClientRuntimeOptions, keyof ClientRuntimeOptions> }
 }
 
 export interface ModuleRuntimeConfig {
-  mixpanel: { server: ServerRuntimeOptions }
+  mixpanel: { server: Pick<ServerRuntimeOptions, keyof ServerRuntimeOptions> }
 }
