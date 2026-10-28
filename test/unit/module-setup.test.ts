@@ -88,7 +88,7 @@ describe('runtime configuration', () => {
       enabled: false,
       token: 'runtime-token',
       config: { debug: false },
-      ...(section === 'client' && { pageviewStrategy: 'native' }),
+      ...(section === 'client' && { pageviewStrategy: 'native' as const }),
     }
     const runtimeConfig = section === 'client'
       ? { public: { mixpanel: { client: runtimeOptions } } }
