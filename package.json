@@ -76,7 +76,7 @@
     "consola": "^3.4.2",
     "defu": "^6.1.7",
     "mixpanel": "^0.24.0",
-    "mixpanel-browser": "^2.84.0"
+    "mixpanel-browser": "^2.85.0"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^1.17.0",

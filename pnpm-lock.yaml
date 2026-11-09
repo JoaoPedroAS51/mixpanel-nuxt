@@ -182,8 +182,8 @@ importers:
         specifier: ^0.24.0
         version: 0.24.0(supports-color@10.2.2)
       mixpanel-browser:
-        specifier: ^2.84.0
-        version: 2.84.0
+        specifier: ^2.85.0
+        version: 2.85.0
     devDependencies:
       '@nuxt/eslint-config':
         specifier: ^1.17.0
@@ -6527,8 +6527,8 @@ packages:
   mitt@3.0.1:
     resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
 
-  mixpanel-browser@2.84.0:
-    resolution: {integrity: sha512-GFvXNiJ6+0RA9fch6WEZBJL5U8FlHICmYXhKIa+zixeYxudC+BtKAbicMCYzgdekgJHLcPhWHAaARfIaArO1tA==}
+  mixpanel-browser@2.85.0:
+    resolution: {integrity: sha512-8W9xHj/ki39FtFFIrZh3k4zwB68m1set4cbiZTcGYheGx9vCt1fS3M1tBNlSz74dHej024orjfgWSY5e51KPTQ==}
 
   mixpanel@0.24.0:
     resolution: {integrity: sha512-R3auZjj9ldYfAH35A+7GMPJaUWcQ4eIjPDprv023fDH1M7OZuA6RZRGE2vj0MRyOWueH/PkjuHdVmDfvtVniLA==}
@@ -16193,7 +16193,7 @@ snapshots:
 
   mitt@3.0.1: {}
 
-  mixpanel-browser@2.84.0:
+  mixpanel-browser@2.85.0:
     dependencies:
       '@mixpanel/rrweb': 2.0.0-alpha.18.6
       '@mixpanel/rrweb-plugin-console-record': 2.0.0-alpha.18.6(@mixpanel/rrweb-utils@2.0.0-alpha.18.6)(@mixpanel/rrweb@2.0.0-alpha.18.6)
