@@ -31,11 +31,12 @@ export type MixpanelClientFlags = Omit<FlagsManager, FlagGetter> & {
 }
 
 /** Browser SDK API, with absent read results while tracking is inactive. */
-export type MixpanelClient = Omit<Mixpanel, ClientGetter | 'flags' | 'init'> & {
+export type MixpanelClient = Omit<Mixpanel, ClientGetter | 'flags' | 'init' | 'SDK_VERSION'> & {
   [K in ClientGetter]: K extends 'get_distinct_id'
     ? () => string | undefined
     : OptionalResult<Mixpanel[K]>
 } & {
+  readonly SDK_VERSION: Mixpanel['SDK_VERSION'] | undefined
   flags: MixpanelClientFlags
   init: (...args: Parameters<Mixpanel['init']>) => MixpanelClient
 }

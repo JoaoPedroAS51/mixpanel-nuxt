@@ -41,6 +41,7 @@ export function createInactiveClient(): MixpanelClient {
     is_enabled_sync: noop,
   }
   const client: MixpanelClient = {
+    SDK_VERSION: undefined,
     init: () => client,
     people,
     flags,
