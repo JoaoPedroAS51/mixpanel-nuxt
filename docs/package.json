@@ -14,7 +14,7 @@
   "dependencies": {
     "@nuxt/content": "3.17.0",
     "docus": "^5.15.0",
-    "nuxt": "4.6.4"
+    "nuxt": "4.7.0"
   },
   "devDependencies": {
     "@typescript/native": "npm:typescript@7.0.2",
